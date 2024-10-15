@@ -2,6 +2,8 @@ application:
   port: 42069
   host: 0.0.0.0
   prefix: ""
+  name: "discord-bot-rustson"
+  version: v0.1.0
 
 database:
   hosts:
@@ -9,5 +11,15 @@ database:
   port: 27017
   username: "root"
   password: "example"
-  database_name: "discord-bot-rustson"
-  require_ssl: false
+  database: "discord-bot-rustson"
+  ssl: false
+
+otel:
+  endpoint: http://localhost:4317
+  enable: false
+
+prometheus:
+  port: 42070
+  path: /metrics
+
+env: "local"
