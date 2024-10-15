@@ -2,5 +2,15 @@
 name = "scrum-discord-bot"
 version = "0.1.0"
 edition = "2021"
+authors = ["Said Rodrigues <coderflemis@gmail.com>"]
+
+[lib]
+path = "src/lib.rs"
+
+
+[[bin]]
+name = "http"
+doc = false
+path = "src/bin/http.rs"
 
 [dependencies]
