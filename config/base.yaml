@@ -1,0 +1,13 @@
+application:
+  port: 42069
+  host: 0.0.0.0
+  prefix: ""
+
+database:
+  hosts:
+    - "localhost"
+  port: 27017
+  username: "root"
+  password: "example"
+  database_name: "discord-bot-rustson"
+  require_ssl: false
