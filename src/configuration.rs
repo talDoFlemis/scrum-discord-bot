@@ -9,17 +9,24 @@ use std::convert::{TryFrom, TryInto};
 pub struct Settings {
     pub database: DatabaseSettings,
     pub application: ApplicationSettings,
+    pub http: HttpSettings,
     pub otel: OpenTelemetrySettings,
     pub prometheus: PrometheusSettings,
     pub env: Environment,
 }
 
 #[derive(serde::Deserialize, Clone)]
-pub struct ApplicationSettings {
+pub struct HttpSettings {
     #[serde(deserialize_with = "deserialize_number_from_string")]
     pub port: u16,
     pub host: String,
     pub prefix: String,
+    #[serde(deserialize_with = "deserialize_number_from_string")]
+    pub timeout: u64,
+}
+
+#[derive(serde::Deserialize, Clone)]
+pub struct ApplicationSettings {
     pub name: String,
     pub version: String,
 }

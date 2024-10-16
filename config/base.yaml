@@ -1,7 +1,10 @@
-application:
+http:
   port: 42069
   host: 0.0.0.0
   prefix: ""
+  timeout: 10
+
+application:
   name: "discord-bot-rustson"
   version: v0.1.0
 
@@ -16,7 +19,7 @@ database:
 
 otel:
   endpoint: http://localhost:4317
-  enable: false
+  enable: true
 
 prometheus:
   port: 42070
