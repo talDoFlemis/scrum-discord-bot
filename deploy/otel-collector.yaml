@@ -1,0 +1,43 @@
+receivers:
+  otlp:
+    protocols:
+      grpc:
+      http:
+
+extensions:
+  health_check:
+  pprof:
+    endpoint: :1888
+  zpages:
+    endpoint: :55679
+
+exporters:
+  prometheus:
+    endpoint: "0.0.0.0:8889"
+
+  otlp:
+    endpoint: tempo:4317
+    tls:
+      insecure: true
+
+  otlphttp/log:
+    endpoint: http://loki:3100/otlp
+    tls:
+      insecure: true
+
+  logging:
+
+service:
+  extensions: [pprof, zpages, health_check]
+  pipelines:
+    traces:
+      receivers: [otlp]
+      exporters: [otlp, logging]
+
+    metrics:
+      receivers: [otlp]
+      exporters: [prometheus, logging]
+
+    logs:
+      receivers: [otlp]
+      exporters: [otlphttp/log, logging]
